@@ -1,6 +1,6 @@
+from aocd import get_data
 passed_lines, second_passed_lines = [], []
-with open("input.txt", "r") as file:
-    inp = file.read().splitlines()
+inp = get_data(day=2, year=2024).splitlines()
 
 def test(split): 
     for i in range(len(split)):

@@ -1,5 +1,5 @@
-with open("input.txt", "r") as file:
-    inp = file.read().splitlines()
+from aocd import get_data
+inp = get_data(day=1, year=2024).splitlines()
 list1, list2, diff, simscore = [], [], 0, 0
 for line in inp:
     split_line = line.split()

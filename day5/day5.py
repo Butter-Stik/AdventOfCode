@@ -20,6 +20,5 @@ for i in range(len(updates)):
     if not lastval in order and update == order:
         part1 += int(update[len(update) // 2])
         continue
-    update.append(lastval)
     part2 += int(order[len(order) // 2])
 print(part1, part2)
