@@ -9,7 +9,6 @@ p1 = []
 p1solved = False
 def escape(block):
     visits = []
-    cellvisits = []
     map = []
     cell = [0, 0]
     size = [0, 0]
@@ -24,7 +23,6 @@ def escape(block):
                 p1.append([i, j])
                 visits.append([[i, j], inp[i][j]])
             if [i, j] == block:
-                print(block)
                 row[j] = "#"
             if p1solved and block not in p1:
                 return True
@@ -32,7 +30,6 @@ def escape(block):
         size[1] = len(row)
     size[0] = len(map)
     repeats = 0
-    numturns = 0
     while True:
         _y, _x = cell
         guard_ = map[_y][_x]
@@ -45,7 +42,6 @@ def escape(block):
             return True
         
         while map[y][x] == "#":
-            numturns += 1
             map[_y][_x] = guard[guard_][1]
             guard_ = map[cell[0]][cell[1]] 
             newcell = [[_y + guard[guard_][0][0], _x + guard[guard_][0][1]], guard_]
@@ -63,10 +59,6 @@ def escape(block):
             visits.append(newcell)
         else:
             return False
-        if newcell[0] in cellvisits:
-            repeats += 1
-            if repeats > numturns:
-                return False
         map[newcell[0][0]][newcell[0][1]] = guard_
         map[cell[0]][cell[1]] = "."
         cell = newcell[0]
@@ -82,6 +74,4 @@ for i in range(len(inp)):
         if not escape([i, j]):
             p2 += 1
             print(p2)
-        else:
-            print("no loop")
 print(p2)
