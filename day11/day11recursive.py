@@ -15,19 +15,15 @@ def get_newstone(stone):
     else:
         newstone = [str(int(stone) * 2024)]
     return newstone
-
-while blinks > 0:
-    for stone in stones:
-        num = stones[stone]
-        newstone = get_newstone(stone)
-        for new in newstone:
-            if new not in newstones:
-                newstones[new] = 0
-            newstones[new] = newstones[new] + num
-    stones = newstones.copy()
-    newstones = {}
-    blinks -= 1
+@cache
+def get_count(stone, b):
+    count = 0
+    if b == 0:
+        return 1
+    for stone in get_newstone(stone):
+        count += get_count(stone, b - 1)
+    return count
 sum = 0
 for stone in stones:
-    sum += stones[stone]
-print(sum, len(stones))
+    sum += get_count(stone, blinks)
+print(sum)
