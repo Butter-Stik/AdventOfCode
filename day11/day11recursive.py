@@ -4,6 +4,7 @@ inp = get_data(day=11,year=2024).split()
 stones = {key: 1 for key in inp}
 newstones = {}
 blinks = 75
+sum = 0
 @cache
 def get_newstone(stone):
     newstone = []
@@ -23,7 +24,6 @@ def get_count(stone, b):
     for stone in get_newstone(stone):
         count += get_count(stone, b - 1)
     return count
-sum = 0
 for stone in stones:
     sum += get_count(stone, blinks)
 print(sum)
