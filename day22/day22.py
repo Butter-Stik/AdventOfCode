@@ -1,9 +1,5 @@
 from aocd import get_data
 inp = get_data(day=22,year=2024).splitlines()
-# inp = """1
-# 2
-# 3
-# 2024""".splitlines()
 MOD = 16777216
 p1 = 0
 allprices = {}
